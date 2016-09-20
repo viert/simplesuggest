@@ -1,0 +1,3 @@
+simplesuggest               usr/sbin/
+conf/simplesuggest.conf     etc/
+upstart/simplesuggest.conf  etc/init/

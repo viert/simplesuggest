@@ -1,0 +1,13 @@
+Source: simplesuggest
+Section: misc
+Priority: optional
+Maintainer: Pavel Vorobyov <viert@yandex-team.ru>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+Homepage: http://viert.fm
+Vcs-Git: git://github.com/viert/simplesuggest.git
+
+Package: simplesuggest
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Simple suggest http daemon

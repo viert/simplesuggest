@@ -1,0 +1,12 @@
+/var/log/simplesuggest.log
+{
+    rotate 7
+    daily
+    missingok
+    notifempty
+    delaycompress
+    compress
+    postrotate
+        killall -HUP simplesuggest
+    endscript
+}
