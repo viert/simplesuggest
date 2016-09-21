@@ -80,6 +80,6 @@ func main() {
 	debug.SetMaxThreads(conf.MaxThreads)
 
 	server := web.NewServer()
-	server.Start(conf.Port)
+	server.Start(conf.Host, conf.Port)
 
 }

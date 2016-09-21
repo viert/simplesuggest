@@ -7,6 +7,7 @@ import (
 )
 
 type Config struct {
+	Host       string
 	Port       int
 	GCPercent  int
 	MaxCores   int
@@ -18,6 +19,7 @@ type Config struct {
 var (
 	log           *logging.Logger = logging.MustGetLogger("suggest")
 	defaultConfig *Config         = &Config{
+		Host:       "0.0.0.0",
 		Port:       7978,
 		GCPercent:  100,
 		MaxCores:   8,
@@ -35,6 +37,12 @@ func Load(filename string) *Config {
 		return defaultConfig
 	}
 	config := new(Config)
+
+	// Setting Host
+	config.Host, err = props.GetString("main.host")
+	if err != nil {
+		config.Host = defaultConfig.Host
+	}
 
 	// Setting Port
 	config.Port, err = props.GetInt("main.port")

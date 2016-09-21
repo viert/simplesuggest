@@ -104,8 +104,8 @@ func (s *Server) indexHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func (s *Server) Start(port int) {
-	listenAddr := fmt.Sprintf("localhost:%d", port)
+func (s *Server) Start(host string, port int) {
+	listenAddr := fmt.Sprintf("%s:%d", host, port)
 	err := http.ListenAndServe(listenAddr, nil)
 	if err != nil {
 		panic(err)
