@@ -75,6 +75,27 @@ func TestNodeConsistency(t *testing.T) {
 
 }
 
+func TestDifferentLetterCase(t *testing.T) {
+
+	var really []string
+	var expected []string
+	var prefix string
+
+	root := newNode()
+	root.insert("abc", "12", 0)
+	root.insert("AbcD", "15", 0)
+	root.insert("aBCd", "18", 0)
+
+	prefix = "abc"
+	really = root.getAllWithPrefix(prefix, 0)
+	expected = []string{"12", "15", "18"}
+	sort.Strings(really)
+	if !reflect.DeepEqual(really, expected) {
+		t.Errorf("Invalid tree getAll() after insertion: %v instead of %v", really, expected)
+	}
+
+}
+
 func BenchmarkNodeInsert(b *testing.B) {
 	t := NewTrie()
 	value := "obj"

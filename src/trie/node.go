@@ -1,5 +1,9 @@
 package trie
 
+import (
+	"strings"
+)
+
 const (
 	EMPTY_NODE_SIZE = 8
 )
@@ -57,11 +61,29 @@ func (n *Node) getAll() []string {
 func (n *Node) getAllWithPrefix(prefix string, stringPos int) []string {
 	if stringPos < len(prefix) {
 		currentLetter := string(prefix[stringPos])
-		if _, found := n.children[currentLetter]; found {
-			return n.children[currentLetter].getAllWithPrefix(prefix, stringPos+1)
+
+		testLetters := make([]string, 1)
+		testLetters[0] = currentLetter
+
+		additional := strings.ToUpper(currentLetter)
+		if additional != currentLetter {
+			testLetters = append(testLetters, additional)
 		} else {
-			return make([]string, 0)
+			additional = strings.ToLower(currentLetter)
+			if additional != currentLetter {
+				testLetters = append(testLetters, additional)
+			}
 		}
+
+		results := make([]string, 0)
+
+		for _, letter := range testLetters {
+			if _, found := n.children[letter]; found {
+				results = append(results, n.children[letter].getAllWithPrefix(prefix, stringPos+1)...)
+			}
+		}
+		return results
+
 	} else {
 		return n.getAll()
 	}
