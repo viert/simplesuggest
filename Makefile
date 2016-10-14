@@ -4,7 +4,7 @@ simplesuggest: dependencies src/simplesuggest.go src/trie/trie.go src/trie/node.
 	GOPATH=$(CURDIR) /usr/local/go/bin/go build src/simplesuggest.go
 
 test: test_dependencies src/trie/trie_test.go src/trie/trie.go src/trie/node.go
-	$(MAKE) -C $(CURDIR)/src/trie
+	GOPATH=$(CURDIR) $(MAKE) -C $(CURDIR)/src/trie
 
 dependencies: src/github.com/op/go-logging src/github.com/viert/properties src/github.com/gorilla/mux
 
