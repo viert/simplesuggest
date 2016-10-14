@@ -35,7 +35,10 @@ func parseData(line string) (string, string, error) {
 	line = strings.TrimRight(line, "\n ")
 	tokens := strings.Split(line, " ")
 	if len(tokens) != 2 {
-		return "", "", errors.New("Invalid data")
+		tokens = strings.Split(line, "\t")
+		if len(tokens) != 2 {
+			return "", "", errors.New("Invalid data")
+		}
 	}
 	return tokens[0], tokens[1], nil
 }
