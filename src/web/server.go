@@ -52,7 +52,7 @@ func (s *Server) suggestHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	query := r.Form.Get("query")
 
-	if len(query) < 3 {
+	if len(query) < 2 {
 		results = make([]string, 0)
 	} else {
 		if store, found := s.store[collection]; found {
